@@ -1,7 +1,7 @@
 public class ds_MinPQueue<Key extends Comparable<Key>> {
 
     int N = 0;
-    int currCap = 2;
+    int currCap = 4;
     private Key[] pq;
 
     public ds_MinPQueue(int maxN) {
@@ -13,7 +13,7 @@ public class ds_MinPQueue<Key extends Comparable<Key>> {
     }
 
     public void insert(Key v) {
-        if (N == currCap - 2) resize(currCap *= 2);
+        if (N == currCap / 2) resize(currCap *= 2);
         pq[++N] = v;
         swim(N);
     }

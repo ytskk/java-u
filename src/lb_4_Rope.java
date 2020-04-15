@@ -42,11 +42,10 @@ public class lb_4_Rope {
     public static int getMinSum(int[] a) {
         ds_MaxPQueue<Integer> pq = new ds_MaxPQueue<>();
         int sum = 0;
-        int returning = 0;
+        int returning;
 
         // filling PQ
         for (int value : a) {
-            System.out.println("size = " + pq.size());
             pq.insert(value);
         }
 
