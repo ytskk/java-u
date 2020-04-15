@@ -1,7 +1,7 @@
 
 public class Main {
 
-    public static void LB_3_actions_BinaryHeap() {
+    static void LB_3_actions_BinaryHeap() {
         System.out.println("\n***LB 3 START\n");
         int MAX = 1_000_000;
         int[] a = new int[MAX];
@@ -14,7 +14,7 @@ public class Main {
         System.out.println("\n***LB 3 END\n");
     }
 
-    public static void LB_4_actions_RopeProblem() {
+    static void LB_4_actions_RopeProblem() {
         System.out.println("\n***LB 4 START\n");
         int MAX = 1_000_000;
 //        int [] a = {4, 3, 2, 6};

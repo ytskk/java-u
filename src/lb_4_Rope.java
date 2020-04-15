@@ -28,16 +28,6 @@ public class lb_4_Rope {
      * -> 2 + 3 = 5             -> 4 + 5 = 9        -> 9 + 6 = 15           -> 15
      *  sum = 0 + 5             sum = 5 + 9         sum = 14 + 15
      *
-     * 3)   (9)
-     *      /-\
-     *    (6)
-     * -> 9 + 6 = 15
-     * 4)
-     *      (15)
-     *
-     *
-     *
-     *
      * */
     public static int getMinSum(int[] a) {
         ds_MaxPQueue<Integer> pq = new ds_MaxPQueue<>();
