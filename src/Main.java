@@ -5,12 +5,19 @@ public class Main {
 
         System.out.println("\n***LB 3 START\n");
         int MAX = 1_000_000;
-        int[] a = new int[MAX];
-        for (int i = 0; i < MAX; i++) {
-            a[i] = StdRandom.uniform(1, 10);
+//        int[] a = new int[MAX];
+//        for (int i = 0; i < MAX; i++) {
+//            a[i] = StdRandom.uniform(1, 10);
+//        }
+        int [] a = {1,7,45,8,5};
+        if (a.length < 10){
+            for (int value :
+                    a) {
+                StdOut.print(value + " ");
+            }
         }
 
-        System.out.println("Median of " + MAX + " el. = " + lb_3_BinaryHeap.getMedian(a));
+        System.out.println("\nMedian of " + a.length + " el. = " + lb_3_BinaryHeap.getMedian(a));
         System.out.println("\n***LB 3 END\n");
     }
 
@@ -18,13 +25,17 @@ public class Main {
 
         System.out.println("\n***LB 4 START\n");
         int MAX = 1_000_000;
-//        int [] a = {4, 3, 2, 6};
-        int[] a = new int[MAX];
-        for (int i = 0; i < MAX; i++) {
-            a[i] = StdRandom.uniform(1, 10);
+        int [] a = {4, 3, 2, 6};
+//        int[] a = new int[MAX];
+//        for (int i = 0; i < MAX; i++) {
+//            a[i] = StdRandom.uniform(1, 10);
+//        }
+        if (a.length < 10){
+            for (int value : a) {
+                System.out.print(value + " ");
+            }
         }
-
-        System.out.println("Sum of " + MAX + " ropes = " + lb_4_Rope.getMinSum(a));
+        System.out.println("\nSum of " + a.length + " ropes = " + lb_4_Rope.getMinSum(a));
         System.out.println("\n***LB 4 END\n");
     }
 
