@@ -95,29 +95,19 @@ public class SearchClient {
 
     public static void main(String[] args) {
         ds_BST<Date_, String> bst = new ds_BST<>();
-//
-//        // test gen
-//        for (int i = 0; i < 10; i++) {
-//            System.out.println(generatedEvent());
-//        }
-
-        int MAX = 100_000;
-
+        int MAX = 100_0000;
         Stopwatch st = new Stopwatch();
         System.out.println("*** Building tree");
         for (int i = 0; i < MAX - 1; i++) {
             if (i % (MAX / 10) == 0) System.out.print('*');
             bst.put(new Date_(), generatedEvent());
         }
-
         Date_ d = new Date_();
         String event = generatedEvent();
         bst.put(d, event);
         System.out.println();
         System.out.println("*** Tree size (num of elements) " + bst.size() + " added for " + st.elapsedTime());
         System.out.println("*** Founding events by date \"" + d + "\"...");
-//        Stopwatch st = new Stopwatch();
-
         String ev_ = bst.get(d);
         System.out.println("*** Event founded: " + ev_);
         System.out.println("*** Elapsed time: " + st.elapsedTime());
@@ -128,13 +118,26 @@ public class SearchClient {
             System.out.println(a + ":\t" + bst.get(a));
         }
 
-
-        /*
-        for (int i = 0; i < MAX; i++) {
-            if (i % (MAX/10) == 0) System.out.print('*');
-            bst.put(StdRandom.uniform(1000000), StdRandom.uniform(1000000));
+        ds_RBT<Date_, String> rbt = new ds_RBT<>();
+        st = new Stopwatch();
+        System.out.println("*** Building RBTree");
+        for (int i = 0; i < MAX - 1; i++) {
+            if (i % (MAX / 10) == 0) System.out.print('*');
+            rbt.put(new Date_(), generatedEvent());
         }
-        */
-
+        d = new Date_();
+        rbt.put(d, event);
+        System.out.println();
+        System.out.println("*** Tree size (num of elements) " + rbt.size() + " added for " + st.elapsedTime());
+        System.out.println("*** Founding events by date \"" + d + "\"...");
+        ev_ = rbt.get(d);
+        System.out.println("*** Event founded: " + ev_);
+        System.out.println("*** Elapsed time: " + st.elapsedTime());
+        lo = new Date_("1 января 2020 г.");
+        hi = new Date_("13 апреля 2020 г.");
+        System.out.println("*** Output result of serch in ...");
+        for (Date_ a : bst.keys(lo, hi)) {
+            System.out.println(a + ":\t" + rbt.get(a));
+        }
     }
 }

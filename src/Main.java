@@ -1,10 +1,13 @@
+import learn.BS;
+
+import java.util.Arrays;
 
 public class Main {
 
     static void LB_3_actions_BinaryHeap() {
 
         System.out.println("\n***LB 3 START\n");
-        int MAX = 1_000_000;
+//        int MAX = 1_000_000;
 //        int[] a = new int[MAX];
 //        for (int i = 0; i < MAX; i++) {
 //            a[i] = StdRandom.uniform(1, 10);
@@ -24,12 +27,12 @@ public class Main {
     static void LB_4_actions_RopeProblem() {
 
         System.out.println("\n***LB 4 START\n");
-        int MAX = 1_000_000;
-        int [] a = {4, 3, 2, 6};
+//        int MAX = 1_000_000;
 //        int[] a = new int[MAX];
 //        for (int i = 0; i < MAX; i++) {
 //            a[i] = StdRandom.uniform(1, 10);
 //        }
+        int [] a = {4, 3, 2, 6};
         if (a.length < 10){
             for (int value : a) {
                 System.out.print(value + " ");
@@ -39,11 +42,15 @@ public class Main {
         System.out.println("\n***LB 4 END\n");
     }
 
+
+
     public static void main(String[] args) {
 
         LB_3_actions_BinaryHeap();
 
         LB_4_actions_RopeProblem();
 
+
     }
+
 }
