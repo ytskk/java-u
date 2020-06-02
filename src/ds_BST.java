@@ -1,4 +1,5 @@
 import java.util.LinkedList;
+import java.util.Queue;
 
 public class ds_BST<Key extends Comparable<Key>, Value> {
     private Node root;
@@ -12,12 +13,33 @@ public class ds_BST<Key extends Comparable<Key>, Value> {
         else return n.N;
     }
 
+    public ds_BST.Node updateKey(Key oldK, Key newk) {
+        return updateKey(root, oldK, newk);
+    }
+
+    private Node updateKey(Node x, Key oldK, Key newK) {
+        getNode(oldK).key = newK;
+        return null;
+    }
+
+    public ds_BST.Node getNode(Key key) {
+        return getNode(root, key);
+    }
+
+    private ds_BST.Node getNode(Node x, Key key) {    // hit && miss
+        if (x == null) return null; // miss
+        int cmp = key.compareTo(x.key);
+        if (cmp < 0) return getNode(x.left, key);
+        else if (cmp > 0) return getNode(x.right, key);
+        else return x; // hit
+    }
+
     public Value get(Key key) {
         return get(root, key);
     }
 
-    private Value get(Node x, Key key) {
-        if (x == null) return null; // hit && miss
+    private Value get(Node x, Key key) {    // hit && miss
+        if (x == null) return null; // miss
         int cmp = key.compareTo(x.key);
         if (cmp < 0) return get(x.left, key);
         else if (cmp > 0) return get(x.right, key);
@@ -192,12 +214,66 @@ public class ds_BST<Key extends Comparable<Key>, Value> {
         if (cmplo < 0) keys(x.left, llq, lo, hi);
         if (cmplo <= 0 && cmphi >= 0) llq.add(x.key);
         if (cmphi > 0) keys(x.right, llq, lo, hi);
-
-
     }
 
+    public boolean isBST() {
+        return isBST(root, null, null);
+    }
 
-    private class Node {
+    private boolean isBST(Node x, Key min, Key max) {
+        if (x == null) return true;
+        if (min != null && x.key.compareTo(min) <= 0) return false;
+        if (max != null && x.key.compareTo(max) >= 0) return false;
+        return isBST(x.left, min, x.key) && isBST(x.right, x.key, max);
+    }
+
+    Node BSTToSortedLL(Node root, Node head_ref) {
+        if (root == null) return head_ref;
+        head_ref = BSTToSortedLL(root.right, head_ref);
+        root.right = head_ref;
+        if (head_ref != null) (head_ref).left = null;
+        head_ref = root;
+        head_ref = BSTToSortedLL(root.left, head_ref);
+        return head_ref;
+    }
+
+    Node SortedLLToMinHeap(Node root, Node head) {
+        if (head == null) return null;
+        Queue<Node> q = new LinkedList<>();
+        root = head;
+        head = head.right;
+        root.right = null;
+        q.add(root);
+        while (head != null) {
+            Node parent = q.peek();
+            q.remove();
+            Node leftChild = head;
+            head = head.right;
+            leftChild.right = null;
+            q.add(leftChild);
+            parent.left = leftChild;
+            if (head != null) {
+                Node rightChild = head;
+                head = head.right;
+                rightChild.right = null;
+                q.add(rightChild);
+                parent.right = rightChild;
+            }
+        }
+        return root;
+    }
+
+    public Node BSTToMinHeap() {
+        return BSTToMinHeap(root);
+    }
+
+    Node BSTToMinHeap(Node root) {
+        Node head = BSTToSortedLL(root, null);
+        root = SortedLLToMinHeap(null, head);
+        return root;
+    }
+
+    public class Node {
         private Key key;
         private Value val;
         private Node left, right;
