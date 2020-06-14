@@ -273,6 +273,72 @@ public class ds_BST<Key extends Comparable<Key>, Value> {
         return root;
     }
 
+
+    public void printLevel() {
+        printLevelOrder(root);
+    }
+
+    private void printLevelOrder(Node root) {
+        // Base Case
+        if (root == null) return;
+
+        // Create an empty queue for level order traversal
+        Queue<Node> q = new LinkedList<>();
+        q.add(root);
+
+        while (q.size() > 0) {
+            int nodeCount = q.size();
+            while (nodeCount > 0) {
+                Node node = q.peek();
+                System.out.print(node.key + " ");
+                q.remove();
+                if (node.left != null)
+                    q.add(node.left);
+                if (node.right != null)
+                    q.add(node.right);
+                nodeCount--;
+            }
+            System.out.println();
+        }
+    }
+
+    public void print() {
+        printHelper(root, "");
+    }
+
+    private void printHelper(Node root, String indent) {
+        if (root == null) {
+            System.out.println(indent + "null");
+            return;
+        }
+
+        // Pick a pretty indent.
+        String newIndent;
+        if (indent.equals("")) {
+            newIndent = ".. ";
+        } else {
+            newIndent = "..." + indent;
+        }
+
+        printHelper(root.left, newIndent);
+        System.out.println(indent + root.key);
+        printHelper(root.right, newIndent);
+    }
+
+    public void printTree() {
+        printTree(root);
+        System.out.println();
+    }
+
+    private void printTree(Node node) {
+        if (node == null) return;
+
+        // left, node itself, right
+        printTree(node.left);
+        System.out.print(node.key + "  ");
+        printTree(node.right);
+    }
+
     public class Node {
         private Key key;
         private Value val;

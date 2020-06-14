@@ -10,7 +10,6 @@ public class MSDSort {
     }
 
     public static void sort(String[] a, int w) {
-
         int N = a.length;
         aux = new String[N];
         sort(a, 0, N - 1, 0);

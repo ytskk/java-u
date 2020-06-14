@@ -63,8 +63,8 @@
 public class ds_ht_StringSort {
 
     public static String generateString(int length) {
-        char[] alph = "qwert".toCharArray();
-        char[] alph_ = "QWERT".toUpperCase().toCharArray();
+        char[] alph = "qwertyuiopasdfghjklzxcvbnm".toCharArray();
+        char[] alph_ = "QWERTYUIOPASDFGHJKLZXCVBNM".toCharArray();
         char[] res = new char[length];
         res[0] = alph_[StdRandom.uniform(alph_.length)];
         for (int i = 1; i < length; i++) {

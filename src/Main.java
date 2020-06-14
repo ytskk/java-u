@@ -1,7 +1,8 @@
+import java.util.Arrays;
 
 public class Main {
 
-    static void LB_3_actions_BinaryHeap() {
+    static void LB_3_BinaryHeap() {
 
         System.out.println("\n***LB 3 START\n");
 //        int MAX = 1_000_000;
@@ -9,8 +10,8 @@ public class Main {
 //        for (int i = 0; i < MAX; i++) {
 //            a[i] = StdRandom.uniform(1, 10);
 //        }
-        int [] a = {1,7,45,8,5};
-        if (a.length < 10){
+        int[] a = {1, 7, 45, 8, 5};
+        if (a.length < 10) {
             for (int value :
                     a) {
                 StdOut.print(value + " ");
@@ -19,9 +20,9 @@ public class Main {
 
         System.out.println("\nMedian of " + a.length + " el. = " + lb_3_BinaryHeap.getMedian(a));
         System.out.println("\n***LB 3 END\n");
-    }
+    } // work
 
-    static void LB_4_actions_RopeProblem() {
+    static void LB_4_RopeProblem() {
 
         System.out.println("\n***LB 4 START\n");
 //        int MAX = 1_000_000;
@@ -37,30 +38,40 @@ public class Main {
         }
         System.out.println("\nSum of " + a.length + " ropes = " + lb_4_Rope.getMinSum(a));
         System.out.println("\n***LB 4 END\n");
-    }
+    } // work
 
-    static void LB_5_actions_BSTToMinPQ() {
+    static void LB_5_BSTToMinPQ() {
         System.out.println("\n***LB 5 START\n");
         System.out.println("BST to MPQ");
 
         //filling
         ds_BST<Integer, Integer> bst = new ds_BST<>();
-        int[] a = {18, 20, 29, 39, 47, 65, 66, 75, 77, 88};
-        for (int i = 0; i < 10; i++) {
-            bst.put(a[i], StdRandom.uniform(0, 100));
-        }
 
-        System.out.println(bst.keys(0, 100));
+        // filling bst
+//        int[] a = {18, 20, 29, 39, 47, 65, 66, 75, 77, 88};
+//        for (int i = 0; i < 10; i++) {
+//            bst.put(a[i], StdRandom.uniform(0, 100));
+//        }
+        bst.put(2, 2);
+        bst.put(4, 2);
+        bst.put(1, 2);
+        bst.put(3, 2);
+        bst.put(5, 2);
+
+
         System.out.println(bst.isBST());
+        bst.printLevel();
+
         bst.BSTToMinHeap();
-        System.out.println(bst.keys(0, 100));
+        System.out.println("Converted to MinPQ");
+        bst.printLevel();
         System.out.println(bst.isBST());
 
 
         System.out.println("\n***LB 5 END\n");
-    }
+    } // :(
 
-    static void LB_6_actions_isBST() {
+    static void LB_6_IsBST() {
         System.out.println("\n***LB 6 START\n");
 
 
@@ -77,24 +88,91 @@ public class Main {
 
 
         System.out.println("\n***LB 6 END\n");
+    } // work
+
+    static void LB_7_FrequencySort() {
+        System.out.println("\n***LB 7 START\n");
+
+
+        System.out.println("Sorting strings by frequency");
+        Comparable[] a = {"dwa", "s", "dwdsa2", "s", "s", "dwa"};
+        System.out.println("UNSORTED ARRAY: " + Arrays.toString(a));
+        a = lb_7_htFrequencySort.htFrequencySort(a);
+        System.out.println("SORTED ARRAY: " + Arrays.toString(a));
+
+        System.out.println("______________________________");
+
+        System.out.println("Sorting integers by frequency");
+        a = new Comparable[]{1, 2, 5, 67, 3, 76, 8, 3, 2, 2, 7, 8, 9};
+        System.out.println("UNSORTED ARRAY: " + Arrays.toString(a));
+        a = lb_7_htFrequencySort.htFrequencySort(a);
+        System.out.println("SORTED ARRAY: " + Arrays.toString(a));
+
+
+        System.out.println("\n***LB 7 END\n");
+    } // work
+
+    static void LB_8_Permutations() {
+        System.out.println("\n***LB 8 START\n");
+
+
+        String str = "ab";
+        lb_8_permutations pmt = new lb_8_permutations();
+        System.out.println("Next, you will find all " + pmt.getPermutationsFac(str) + " ways to rearrange the string \"" + str + "\" in ascending order.");
+        pmt.letTheChaosBegin(str);
+
+
+        System.out.println("\n***LB 8 END\nwe are saved)\n");
+    } // work
+
+    static void LB_9_Occurrences() {
+        System.out.println("\n***LB 9 START\n");
+
+        String FOUND = "wis"; // to found
+        // TODO: сделать чекер на квадратность матрицы
+        String[] StringMatrix = {
+                "sssw",
+                "iiii",
+                "wwws",
+                "1234"
+
+        }; // looking here
+        char[][] matrix = new char[StringMatrix.length][StringMatrix[0].length()];
+        for (int i = 0; i < StringMatrix.length; i++) {
+            char[] cs = StringMatrix[i].toCharArray();
+            System.arraycopy(cs, 0, matrix[i], 0, StringMatrix[i].length());
+        } // building matrix
+
+        printMatrix(matrix);
+        System.out.println("\n\"" + FOUND + "\" can be found in " + lb_9_occurrences.count(matrix, FOUND) + " ways");
+
+
+        System.out.println("\n***LB 9 END\n");
     }
 
-    static void LB_7_actions_FrequencySort() {
-        int[] a = {1, 2, 5, 67, 3, 76, 8, 3, 2, 2, 7, 8, 9};
-        lb_7_htFrequencySort.htFrequencySort(a);
+    private static void printMatrix(char[][] matrix) {
+        for (char[] chars : matrix) {
+            for (char el : chars) System.out.print(el + " ");
+            System.out.println();
+        }
+
     }
 
     public static void main(String[] args) {
 
-        LB_3_actions_BinaryHeap();
+        LB_3_BinaryHeap();
 
-        LB_4_actions_RopeProblem();
+        LB_4_RopeProblem();
 
-        LB_5_actions_BSTToMinPQ();
+        LB_5_BSTToMinPQ();
 
-        LB_6_actions_isBST();
+        LB_6_IsBST();
 
-        LB_7_actions_FrequencySort();
+        LB_7_FrequencySort();
+
+        LB_8_Permutations();
+
+        LB_9_Occurrences();
 
     }
 }
