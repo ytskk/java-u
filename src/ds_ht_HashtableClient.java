@@ -2,9 +2,9 @@ public class ds_ht_HashtableClient {
     public static String generateRandomString(int length) {
         char[] a = new char[length];
         char[] alph = "йцукенгшщзхъфывапролджэячсмитьбю".toCharArray();
-        char[] alph_ = "йцукенгшщзхъфывапролджэячсмитьбю".toUpperCase().toCharArray();
-        a[0] = alph_[StdRandom.uniform(alph.length)];
-        for (int i = 1; i < length; i++) {
+//        char[] alph_ = "йцукенгшщзхъфывапролджэячсмитьбю".toUpperCase().toCharArray();
+//        a[0] = alph_[StdRandom.uniform(alph.length)];
+        for (int i = 0; i < length; i++) {
             a[i] = alph[StdRandom.uniform(alph.length)];
         }
         return new String(a);

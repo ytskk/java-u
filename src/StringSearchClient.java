@@ -10,7 +10,7 @@ public class StringSearchClient {
                 for (int j = 0; j < M; j++) {
                     ans[i + j] = pattern[j];
                 }
-                i += M;
+                i += M - 1;
             } else ans[i] = alph[StdRandom.uniform(alph.length)];
         }
         return new String(ans);
@@ -20,7 +20,7 @@ public class StringSearchClient {
         String pat = "needleinahaystack";
         int N = 1_000_000_00;
         int R = 256;
-        String txt = saltedRandomString(N, 1337666, pat);
+        String txt = saltedRandomString(N, 175, pat);
 
         Stopwatch st;
         int pos_;

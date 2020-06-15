@@ -96,17 +96,17 @@ public class Main {
 
         System.out.println("Sorting strings by frequency");
         Comparable[] a = {"dwa", "s", "dwdsa2", "s", "s", "dwa"};
-        System.out.println("UNSORTED ARRAY: " + Arrays.toString(a));
+        System.out.println("UNSORTED ARRAY  :\t" + Arrays.toString(a));
         a = lb_7_htFrequencySort.htFrequencySort(a);
-        System.out.println("SORTED ARRAY: " + Arrays.toString(a));
+        System.out.println("SORTED ARRAY    :\t" + Arrays.toString(a));
 
         System.out.println("______________________________");
 
         System.out.println("Sorting integers by frequency");
         a = new Comparable[]{1, 2, 5, 67, 3, 76, 8, 3, 2, 2, 7, 8, 9};
-        System.out.println("UNSORTED ARRAY: " + Arrays.toString(a));
+        System.out.println("UNSORTED ARRAY  :\t" + Arrays.toString(a));
         a = lb_7_htFrequencySort.htFrequencySort(a);
-        System.out.println("SORTED ARRAY: " + Arrays.toString(a));
+        System.out.println("SORTED ARRAY    :\t" + Arrays.toString(a));
 
 
         System.out.println("\n***LB 7 END\n");
@@ -116,7 +116,7 @@ public class Main {
         System.out.println("\n***LB 8 START\n");
 
 
-        String str = "ab";
+        String str = "ItIsHell";
         lb_8_permutations pmt = new lb_8_permutations();
         System.out.println("Next, you will find all " + pmt.getPermutationsFac(str) + " ways to rearrange the string \"" + str + "\" in ascending order.");
         pmt.letTheChaosBegin(str);
@@ -128,26 +128,32 @@ public class Main {
     static void LB_9_Occurrences() {
         System.out.println("\n***LB 9 START\n");
 
-        String FOUND = "wis"; // to found
-        // TODO: сделать чекер на квадратность матрицы
-        String[] StringMatrix = {
-                "sssw",
-                "iiii",
-                "wwws",
-                "1234"
+        String FIND = "wis"; // to find
 
-        }; // looking here
-        char[][] matrix = new char[StringMatrix.length][StringMatrix[0].length()];
-        for (int i = 0; i < StringMatrix.length; i++) {
-            char[] cs = StringMatrix[i].toCharArray();
-            System.arraycopy(cs, 0, matrix[i], 0, StringMatrix[i].length());
-        } // building matrix
+        char[][] matrix = generateMatrix(FIND);
 
         printMatrix(matrix);
-        System.out.println("\n\"" + FOUND + "\" can be found in " + lb_9_occurrences.count(matrix, FOUND) + " ways");
+        System.out.println("\n\"" + FIND + "\" can be found in " + lb_9_occurrences.count(matrix, FIND) + " ways");
 
 
         System.out.println("\n***LB 9 END\n");
+    }
+
+    private static char[][] generateMatrix(String text) {
+        int generatedStringLength = StdRandom.uniform(text.length() + 1, (text.length() + 1) * 5); // length of matrix depends on FIND length
+
+        char[][] matrix = new char[generatedStringLength][generatedStringLength];
+        for (char[] chars : matrix) {
+            double rand = StdRandom.uniform();
+            char[] syms = (rand < 0.5)
+                    ? ds_ht_StringSort.generateString(generatedStringLength).toCharArray()
+                    : (rand > 0.75)
+                    ? StringSearchClient.saltedRandomString(generatedStringLength, StdRandom.uniform(0, generatedStringLength - text.length()), text).toCharArray()
+                    : StringSearchClient.saltedRandomString(generatedStringLength, StdRandom.uniform(0, generatedStringLength - text.length()), new StringBuilder(text).reverse().toString()).toCharArray();
+            System.arraycopy(syms, 0, chars, 0, syms.length); // from, fromIndex, to, toIndex, count
+        } // generates strings with secret word
+
+        return matrix;
     }
 
     private static void printMatrix(char[][] matrix) {

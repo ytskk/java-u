@@ -32,7 +32,6 @@ public class lb_9_occurrences {
         return result;
     }
 
-    // TODO сделать красиво
     private static int right(char[][] matrix, char[] word, int[] startPos) {
         int j = 1;
         if (matrix[startPos[0]].length - startPos[1] < word.length) return 0;

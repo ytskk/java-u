@@ -13,20 +13,13 @@ public class lb_8_permutations {
     public int getPermutationsFac(String str) {
         int num = getUniqueChar(str);
         int factorial = 1;
-        while (num != 0) {
-            factorial *= num--;
-        }
+        while (num != 0) factorial *= num--;
         return factorial;
     }
 
     private int getUniqueChar(String test) {
         String temp = "";
-        for (int i = 0; i < test.length(); i++) {
-            if (temp.indexOf(test.charAt(i)) == -1) {
-                temp = temp + test.charAt(i);
-            }
-        }
-
+        for (int i = 0; i < test.length(); i++) if (temp.indexOf(test.charAt(i)) == -1) temp += test.charAt(i);
         return temp.length();
     }
 
